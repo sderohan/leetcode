@@ -1,0 +1,36 @@
+/******************************************************************************
+
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+public class Main
+{
+    public static boolean kSegment(int[] nums, int k, int n) {
+    boolean flag = false;
+    int length = nums.length, i = 0, next = k;
+    while( i < length ) {
+	//if previous segment had no elements return false
+        if(i!=0 && i%k==0 && !flag)
+            return false;
+	//start of every next segment make it false
+        if(i%k == 0 && flag)
+            flag = false;
+        if(nums[i] == n) {
+            flag = true;
+            i = next;
+            next += k;
+        } else {
+            i++;
+        }
+    }
+    //ensures element is also present in last segment
+    return flag != false;
+   }
+
+	public static void main(String[] args) {
+	    int arr[] = {3,3};
+		System.out.println(kSegment(arr, 1, 3));
+	}
+}
